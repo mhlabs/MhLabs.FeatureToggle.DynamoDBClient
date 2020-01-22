@@ -11,7 +11,7 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Services
     public class FeatureToggleService : IFeatureToggleService
     {
         private readonly ILdClient _ldClient;
-        public FeatureToggleService(FeatureToggleConfiguration configuration)
+        public FeatureToggleService(IFeatureToggleConfiguration configuration)
         {
 
             var store = DynamoDBComponents.DynamoDBFeatureStore(configuration.TableName)

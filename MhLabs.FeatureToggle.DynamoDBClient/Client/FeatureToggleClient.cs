@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using MhLabs.FeatureToggle.DynamoDBClient.Configuration;
 using MhLabs.FeatureToggle.DynamoDBClient.Services;
 using MhLabs.FeatureToggle.DynamoDBClient.Services.Responses;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
 namespace MhLabs.FeatureToggle.DynamoDBClient.Client
@@ -13,7 +12,7 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Client
         private readonly ILogger<FeatureToggleClient> _logger;
         private readonly IFeatureToggleService _service;
 
-        public FeatureToggleClient(IFeatureToggleService service, ILogger<FeatureToggleClient> logger)
+        public FeatureToggleClient(IFeatureToggleService service, IFeatureToggleConfiguration configuration, ILogger<FeatureToggleClient> logger)
         {
             _logger = logger;
             _service = service;
