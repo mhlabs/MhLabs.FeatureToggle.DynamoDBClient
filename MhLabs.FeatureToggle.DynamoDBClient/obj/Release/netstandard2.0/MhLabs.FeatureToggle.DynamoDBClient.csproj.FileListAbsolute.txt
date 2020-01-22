@@ -1,0 +1,9 @@
+/home/lars/code/mhlabs/MhLabs.FeatureToggle.DynamoDBClient/MhLabs.FeatureToggle.DynamoDBClient/bin/Release/netstandard2.0/MhLabs.FeatureToggle.DynamoDBClient.deps.json
+/home/lars/code/mhlabs/MhLabs.FeatureToggle.DynamoDBClient/MhLabs.FeatureToggle.DynamoDBClient/bin/Release/netstandard2.0/MhLabs.FeatureToggle.DynamoDBClient.dll
+/home/lars/code/mhlabs/MhLabs.FeatureToggle.DynamoDBClient/MhLabs.FeatureToggle.DynamoDBClient/bin/Release/netstandard2.0/MhLabs.FeatureToggle.DynamoDBClient.pdb
+/home/lars/code/mhlabs/MhLabs.FeatureToggle.DynamoDBClient/MhLabs.FeatureToggle.DynamoDBClient/obj/Release/netstandard2.0/MhLabs.FeatureToggle.DynamoDBClient.csprojAssemblyReference.cache
+/home/lars/code/mhlabs/MhLabs.FeatureToggle.DynamoDBClient/MhLabs.FeatureToggle.DynamoDBClient/obj/Release/netstandard2.0/MhLabs.FeatureToggle.DynamoDBClient.csproj.CoreCompileInputs.cache
+/home/lars/code/mhlabs/MhLabs.FeatureToggle.DynamoDBClient/MhLabs.FeatureToggle.DynamoDBClient/obj/Release/netstandard2.0/MhLabs.FeatureToggle.DynamoDBClient.AssemblyInfoInputs.cache
+/home/lars/code/mhlabs/MhLabs.FeatureToggle.DynamoDBClient/MhLabs.FeatureToggle.DynamoDBClient/obj/Release/netstandard2.0/MhLabs.FeatureToggle.DynamoDBClient.AssemblyInfo.cs
+/home/lars/code/mhlabs/MhLabs.FeatureToggle.DynamoDBClient/MhLabs.FeatureToggle.DynamoDBClient/obj/Release/netstandard2.0/MhLabs.FeatureToggle.DynamoDBClient.dll
+/home/lars/code/mhlabs/MhLabs.FeatureToggle.DynamoDBClient/MhLabs.FeatureToggle.DynamoDBClient/obj/Release/netstandard2.0/MhLabs.FeatureToggle.DynamoDBClient.pdb
