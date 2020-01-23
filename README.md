@@ -12,14 +12,14 @@ To check if a flag is enabled:
 ```
 private readonly IFeatureToggleClient _client;
 [...]
-_client.Enabled("flagKey", "userKey");
+var enabled = _client.Enabled("flagKey", "userKey");
 
 ```
 
 or 
 
 ```
-_client.Get("flagKey", "userKey").Enabled;
+var enabled = _client.Get("flagKey", "userKey").Enabled;
 ```
 
 ## Configuration
