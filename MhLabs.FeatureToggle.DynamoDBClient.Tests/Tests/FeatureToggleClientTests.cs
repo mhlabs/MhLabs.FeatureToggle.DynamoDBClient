@@ -10,6 +10,7 @@ using MhLabs.FeatureToggle.DynamoDBClient.Services;
 using MhLabs.FeatureToggle.DynamoDBClient.Client;
 using Microsoft.Extensions.Logging.Abstractions;
 using MhLabs.FeatureToggle.DynamoDBClient.Extensions;
+using MhLabs.FeatureToggle.DynamoDBClient.Configuration;
 
 namespace MhLabs.FeatureToggle.DynamoDBClient.Tests
 {
