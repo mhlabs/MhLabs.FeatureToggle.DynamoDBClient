@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using MhLabs.FeatureToggle.DynamoDBClient.Configuration;
 using MhLabs.FeatureToggle.DynamoDBClient.Services;
 using MhLabs.FeatureToggle.DynamoDBClient.Services.Responses;
 using Microsoft.Extensions.Logging;
@@ -12,7 +11,7 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Client
         private readonly ILogger<FeatureToggleClient> _logger;
         private readonly IFeatureToggleService _service;
 
-        public FeatureToggleClient(IFeatureToggleService service, IFeatureToggleConfiguration configuration, ILogger<FeatureToggleClient> logger)
+        public FeatureToggleClient(IFeatureToggleService service, ILogger<FeatureToggleClient> logger)
         {
             _logger = logger;
             _service = service;
@@ -21,6 +20,18 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Client
         public async Task<bool> Enabled(string flagName, string userKey, bool defaultValue = false)
         {
             return (await Get(flagName, userKey, defaultValue))?.Enabled == true;
+        }
+
+        public async Task<FeatureToggleResponse<T>> Get<T>(string flagName, string userKey)
+        {
+            try
+            {
+                return await _service.GetJSON<T>(flagName, userKey);
+            }
+            catch (Exception ex)
+            {
+                return HandleException<T>(ex, flagName, userKey);
+            }
         }
 
         public async Task<FeatureToggleResponse> Get(string flagName, string userKey, bool defaultValue = default)
@@ -50,9 +61,31 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Client
                 _logger.LogError(ex, "Request Exception - Flag: {Flag}. User: {UserKey}", flagName, userKey);
             }
 
-            return new FeatureToggleResponse() 
+            return new FeatureToggleResponse()
             {
                 Enabled = defaultValue,
+                Error = ex.GetType().Name
+            };
+        }
+
+        private FeatureToggleResponse<T> HandleException<T>(Exception ex, string flagName, string userKey)
+        {
+            if (ex is UnauthorizedAccessException)
+            {
+                _logger.LogError(ex, "Request UnauthorizedAccessException - Flag: {Flag}. User: {UserKey}", flagName, userKey);
+            }
+            else if (ex is TaskCanceledException)
+            {
+                _logger.LogError(ex, "Request TaskCanceledException - Flag: {Flag}. User: {UserKey}", flagName, userKey);
+            }
+            else
+            {
+                _logger.LogError(ex, "Request Exception - Flag: {Flag}. User: {UserKey}", flagName, userKey);
+            }
+
+            return new FeatureToggleResponse<T>()
+            {
+                Toggle = default,
                 Error = ex.GetType().Name
             };
         }

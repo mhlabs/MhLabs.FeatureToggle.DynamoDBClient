@@ -11,6 +11,7 @@ using MhLabs.FeatureToggle.DynamoDBClient.Client;
 using Microsoft.Extensions.Logging.Abstractions;
 using MhLabs.FeatureToggle.DynamoDBClient.Extensions;
 using MhLabs.FeatureToggle.DynamoDBClient.Configuration;
+using MhLabs.FeatureToggle.DynamoDBClient.Services.Responses;
 
 namespace MhLabs.FeatureToggle.DynamoDBClient.Tests
 {
@@ -23,7 +24,7 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Tests
         {
             var testConfig = config ?? new TestConfig();
 
-            return new FeatureToggleClient(service ?? _service.Object, testConfig.Configuration, NullLogger<FeatureToggleClient>.Instance);
+            return new FeatureToggleClient(service ?? _service.Object, NullLogger<FeatureToggleClient>.Instance);
         }
 
         [Fact]
@@ -65,6 +66,26 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Tests
         }
 
         [Fact]
+        public async Task Should_Return_Response_When_Succesful_Typed()
+        {
+            // Arrange
+            var config = new TestConfig();
+            var mock = _fixture.Create<FeatureToggleResponse<ToggleTest>>();
+            mock.Error = null;
+            
+            _service.Setup(x => x.GetJSON<ToggleTest>(config.FlagName, config.UserKey))
+                                .ReturnsAsync(mock);
+
+            // Act
+            var client = CreateClient(config);
+            var response = await client.Get<ToggleTest>(config.FlagName, config.UserKey);
+
+            // Assert
+            response.Toggle.ShouldBe(mock.Toggle);
+            response.Error.ShouldBeNull();
+        }
+
+        [Fact]
         public async Task Should_Return_Response_When_Exception()
         {
             // Arrange
@@ -84,5 +105,11 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Tests
             response.Enabled.ShouldBe(config.DefaultValue);
             response.Error.ShouldBe(typeof(UnauthorizedAccessException).Name);
         }
+    }
+
+    public class ToggleTest
+    {
+        public string Name {get; set;}
+        public int Value {get;set;}
     }
 }

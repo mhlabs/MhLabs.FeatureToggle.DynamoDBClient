@@ -15,6 +15,7 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Tests
         public string FlagName = _fixture.Create<string>();
         public string UserKey = _fixture.Create<string>();
         public bool DefaultValue = _fixture.Create<bool>();
+        
 
         public TestConfig(int? apiRequestTimeoutMilliseconds = null)
         {

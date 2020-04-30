@@ -7,5 +7,6 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Client
     {
         Task<FeatureToggleResponse> Get(string flagName, string userKey, bool defaultValue = default(bool));
         Task<bool> Enabled(string flagName, string userKey, bool defaultValue = default(bool));
+        Task<FeatureToggleResponse<T>> Get<T>(string flagName, string userKey);
     }
 }

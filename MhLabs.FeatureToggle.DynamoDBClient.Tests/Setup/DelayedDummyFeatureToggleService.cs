@@ -13,5 +13,11 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Tests
             await Task.Delay(1000, cancellationToken);
             return new FeatureToggleResponse();
         }
+
+        public async Task<FeatureToggleResponse<T>> GetJSON<T>(string flagName, string userKey)
+        {
+            await Task.Delay(1000);
+            return new FeatureToggleResponse<T>();
+        }
     }
 }

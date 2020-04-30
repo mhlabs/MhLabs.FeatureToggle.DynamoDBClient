@@ -13,6 +13,6 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Extensions
             services.AddSingleton<IFeatureToggleClient, FeatureToggleClient>();
             services.AddSingleton<IFeatureToggleService, FeatureToggleService>();
             return services;
-        }       
+        }
     }
 }

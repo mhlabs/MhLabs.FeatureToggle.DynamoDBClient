@@ -7,5 +7,6 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Services
     public interface IFeatureToggleService
     {
         Task<FeatureToggleResponse> Get(string flagName, string userKey, bool defaultValue = default(bool), CancellationToken cancellationToken = default(CancellationToken));
+        Task<FeatureToggleResponse<T>> GetJSON<T>(string flagName, string userKey);
     }
 }
