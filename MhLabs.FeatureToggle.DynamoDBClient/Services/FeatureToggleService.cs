@@ -34,7 +34,7 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Services
             return new FeatureToggleResponse()
             {
                 Enabled = flag,
-                    Error = null
+                Error = null
             };
         }
 
@@ -43,11 +43,14 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Services
             try
             {
                 await Task.CompletedTask;
+
                 var flag = _ldClient.JsonVariation(flagName, new User(userKey), default);
+                var exists = flag != default;
 
                 return new FeatureToggleResponse<T>
                 {
-                    Toggle = flag.ToObject<T>(),
+                    Toggle = exists ? flag.ToObject<T>() : default,
+                    Exists = exists,
                     Error = null
                 };
             }

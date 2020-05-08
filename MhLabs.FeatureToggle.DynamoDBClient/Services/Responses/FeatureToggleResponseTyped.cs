@@ -7,5 +7,6 @@ namespace MhLabs.FeatureToggle.DynamoDBClient.Services.Responses
         public T Toggle { get; set; }
         public string Error { get; set; }
         public long TimeStamp => DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        public bool? Exists { get;set; }
     }
 }
